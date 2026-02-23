@@ -448,6 +448,9 @@ export default function App() {
             <a className="navLink" href="#pricing" onClick={(e) => (e.preventDefault(), scrollToId("pricing"))}>
               {t.navPricing}
             </a>
+            <a className="navLink" href="#story" onClick={(e) => (e.preventDefault(), scrollToId("story"))}>
+  {t.navStory ?? "Story"}
+</a>
           </div>
 
           <div style={{ display: "flex", gap: 10, alignItems: "center" }}>
@@ -670,6 +673,149 @@ export default function App() {
           </div>
         </div>
       </section>
+
+      {/* Story */}
+<section className="section" id="story">
+  <div className="container">
+    <div className="storyHeader">
+      <h2 className="h2">{t.storyTitle ?? "Our Story"}</h2>
+      <div className="muted" style={{ maxWidth: 820 }}>
+        {t.storyLead ??
+          "Three Tokyo salarymen. Years of after-work research. A quiet promise: no tourist traps, no guessing — just the right night."}
+      </div>
+    </div>
+
+    <div className="storyGrid">
+      <div className="storyCard">
+        <div className="storyKicker">{t.storyKicker1 ?? "Why we exist"}</div>
+        <div className="storyTitle">
+          {t.storyHead1 ?? "Tokyo’s best nights are hidden — and they’re not on Google."}
+        </div>
+        <div className="storyText">
+          {t.storyBody1 ??
+            "We noticed something: the truly great izakaya and bars rarely appear in tourist feeds. They live in introductions, regulars, and quiet streets. So we built a service that feels like a trusted friend in Tokyo — with taste."}
+        </div>
+      </div>
+
+      <div className="storyCard">
+        <div className="storyKicker">{t.storyKicker2 ?? "How it works"}</div>
+        <div className="storyTitle">{t.storyHead2 ?? "Omakase planning, with guardrails."}</div>
+        <div className="storyText">
+          {t.storyBody2 ??
+            "You tell us who you’re with, the vibe, budget, and area. We propose a night flow — then reroll up to 3 times until it feels perfect. Exact restaurant names are shared after paid request to protect quality and availability."}
+        </div>
+
+        <div className="storyPills">
+          <div className="trustPill">{t.storyPill1 ?? "Curated by locals"}</div>
+          <div className="trustPill">{t.storyPill2 ?? "No tourist traps"}</div>
+          <div className="trustPill">{t.storyPill3 ?? "Reservations supported"}</div>
+        </div>
+      </div>
+
+      <div className="storyCard storyCardWide">
+        <div className="storyKicker">{t.storyKicker3 ?? "What you get"}</div>
+        <div className="storyTitle">{t.storyHead3 ?? "A night that feels effortless."}</div>
+        <div className="storyText">
+          {t.storyBody3 ??
+            "A clean plan. The right pacing. The kind of places where conversations land softly. If Tokyo is overwhelming, we narrow it down to what matters — and make the night yours."}
+        </div>
+
+        <div className="storyCtaRow">
+          <button className="btn btnPrimary" onClick={() => scrollToId("quiz")}>
+            {t.heroCtaPrimary ?? "Start the quiz"}
+          </button>
+          <a className="btn btnBlock" href={CONFIG.instagramProfileUrl} target="_blank" rel="noreferrer">
+            {t.storyCta2 ?? "See the vibe on Instagram"}
+          </a>
+        </div>
+      </div>
+    </div>
+
+    {/* Founders */}
+    <div className="foundersHeader">
+      <h2 className="h2">{t.foundersTitle ?? "Founders"}</h2>
+      <div className="muted" style={{ maxWidth: 820 }}>
+        {t.foundersLead ??
+          "We’re not a tour company. We’re three friends who care about taste, pace, and the kind of night you’ll remember."}
+      </div>
+    </div>
+
+    <div className="foundersGrid">
+      <div className="founderCard">
+        <div className="founderTop">
+        <div className="avatar avatarW">
+          <span className="avatarInitial">W</span>
+        </div>
+          <div>
+            <div className="founderName">Wataru</div>
+            <div className="founderRole">{t.role1 ?? "Planner / Reservations"}</div>
+          </div>
+        </div>
+        <div className="founderBio">
+          {t.bio1 ??
+            "Canada-born, Japan-raised. Quietly obsessed with finding the one perfect place for the moment. Handles planning ops and makes the night frictionless."}
+        </div>
+        <div className="founderTags">
+          <span className="chip">{t.tag1a ?? "Sake"}</span>
+          <span className="chip">{t.tag1b ?? "Hidden gems"}</span>
+          <span className="chip">{t.tag1c ?? "Logistics"}</span>
+        </div>
+      </div>
+
+      <div className="founderCard">
+        <div className="founderTop">
+        <div className="avatar avatarK">
+          <span className="avatarInitial">K</span>
+        </div>
+          <div>
+            <div className="founderName">Kei</div>
+            <div className="founderRole">{t.role2 ?? "Brand / Taste"}</div>
+          </div>
+        </div>
+        <div className="founderBio">
+          {t.bio2 ??
+            "Ad agency. Singapore-trained palate. Turns ‘good’ into ‘I can’t believe we found this’. Curates vibe-forward spots and makes the story land."}
+        </div>
+        <div className="founderTags">
+          <span className="chip">{t.tag2a ?? "Bar hopping"}</span>
+          <span className="chip">{t.tag2b ?? "Cocktails"}</span>
+          <span className="chip">{t.tag2c ?? "Design sense"}</span>
+        </div>
+      </div>
+
+      <div className="founderCard">
+        <div className="founderTop">
+        <div className="avatar avatarH">
+          <span className="avatarInitial">H</span>
+        </div>
+          <div>
+            <div className="founderName">Hiraku</div>
+            <div className="founderRole">{t.role3 ?? "Strategy / Systems"}</div>
+          </div>
+        </div>
+        <div className="founderBio">
+          {t.bio3 ??
+            "Consulting manager. Portland-seasoned. Builds the system that keeps quality high — and makes sure every plan feels personal, not generic."}
+        </div>
+        <div className="founderTags">
+          <span className="chip">{t.tag3a ?? "Yakitori"}</span>
+          <span className="chip">{t.tag3b ?? "Whisky"}</span>
+          <span className="chip">{t.tag3c ?? "Precision"}</span>
+        </div>
+      </div>
+    </div>
+
+    <div className="foundersBottom">
+      <div className="card">
+        <div className="cardTitle">{t.promiseTitle ?? "Our promise"}</div>
+        <div className="cardText">
+          {t.promiseBody ??
+            "We keep restaurant names protected until paid request, to preserve availability and avoid crowds. The goal is quality nights — not mass tourism."}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
       {/* Pricing */}
 
