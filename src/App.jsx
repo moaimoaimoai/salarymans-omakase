@@ -430,10 +430,10 @@ export default function App() {
     <>
       <div className="topNav">
         <div className="topNavInner">
-          <div className="brand" onClick={() => (window.location.hash = "#/")} style={{ cursor: "pointer" }}>
-            <span className="brandMark" />
-            <span>{CONFIG.brandName}</span>
-          </div>
+        <div className="brand" onClick={() => (window.location.hash = "#/")} style={{ cursor: "pointer" }}>
+  <img src="/logo.png" alt="Logo" className="brandLogo" />
+  <span>{CONFIG.brandName}</span>
+</div>
 
           <div className="navLinks">
             <a className="navLink" href="#quiz" onClick={(e) => (e.preventDefault(), scrollToId("quiz"))}>
@@ -459,7 +459,8 @@ export default function App() {
               ))}
             </select>
             <button className="btn btnPrimary" onClick={() => scrollToId("quiz")}>
-              {t.heroCtaPrimary}
+              <span className="desktopOnly">{t.heroCtaPrimary}</span>
+              <span className="mobileOnly">Start Quiz</span>
             </button>
           </div>
         </div>
@@ -726,8 +727,8 @@ export default function App() {
       <div className="footer">
         <div className="container footerInner">
           <div>
-            <div className="brand">
-              <span className="brandMark" />
+          <div className="brand">
+              <img src="/logo.png" alt="Logo" className="brandLogo" />
               <span>{CONFIG.brandName}</span>
             </div>
             <div className="small">{CONFIG.tagline}</div>

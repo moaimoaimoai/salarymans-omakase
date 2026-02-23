@@ -564,3 +564,46 @@
   display:flex;             /* ✅ 追加推奨 */
   justify-content:center;
 }
+/* ===== Header responsive fix ===== */
+@media (max-width: 980px) {
+
+    .topNavInner {
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+  
+    .navLinks {
+      display: none;   /* モバイルでは非表示 */
+    }
+  
+    .topNavInner > div:last-child {
+      width: 100%;
+      justify-content: space-between;
+    }
+  
+    .topNav .btn {
+      flex: 1;
+      min-width: 0;
+      white-space: normal;     /* 折り返し許可 */
+      text-align: center;
+    }
+  
+    .langSelect {
+      max-width: 90px;
+    }
+  }
+
+.mobileOnly { display: none; }
+.desktopOnly { display: inline; }
+
+@media (max-width: 980px) {
+  .mobileOnly { display: inline; }
+  .desktopOnly { display: none; }
+}
+
+.brandLogo{
+    width: 38px;
+    height: 38px;
+    border-radius: 12px;   /* 今の角丸雰囲気を維持 */
+    object-fit: cover;
+  }
