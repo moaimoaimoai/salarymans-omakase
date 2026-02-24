@@ -287,7 +287,7 @@
     flex: 0 0 min(360px, 78vw);
     height: 220px;
     border-radius: 26px;
-    border:1px solid rgba(255,255,255,.14);
+    border:0px solid rgba(255,255,255,.14);
     background-size: cover;
     background-position: center;
     position:relative;
@@ -297,7 +297,7 @@
   }
   .planTile::after{
     content:"";
-    position:absolute; inset:0;
+    position:absolute; inset: 0px;
     background:
       linear-gradient(to top, rgba(0,0,0,.72), rgba(0,0,0,.08)),
       radial-gradient(700px 260px at 20% 30%, rgba(255,255,255,.10), transparent 60%);

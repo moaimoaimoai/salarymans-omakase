@@ -14,29 +14,10 @@ const PLANS = [
     area: ["central", "ginza"],
     must: ["sake", "yakitori", "whisky"],
     stops: [
-      {
-        step: 1,
-        key: "yakitori",
-        name: "Hidden Yakitori",
-        note: "Charcoal, perfect highballs, no tourist traps.",
-        image: "/stops/central_1_yakitori.jpg",
-      },
-      {
-        step: 2,
-        key: "sake",
-        name: "Sake + Seasonal plates",
-        note: "Pairings that feel ‘Tokyo’.",
-        image: "/stops/central_2_sake.jpg",
-      },
-      {
-        step: 3,
-        key: "bar",
-        name: "Late-night bar",
-        note: "Clean finish — quiet and classy.",
-        image: "/stops/central_3_bar.jpg",
-      },
+      { step: 1, key: "yakitori", name: "Hidden Yakitori", note: "Charcoal, perfect highballs, no tourist traps.", image: "/stops/central_1_yakitori.jpg" },
+      { step: 2, key: "sake", name: "Sake + Seasonal plates", note: "Pairings that feel ‘Tokyo’.", image: "/stops/central_2_sake.jpg" },
+      { step: 3, key: "bar", name: "Late-night bar", note: "Clean finish — quiet and classy.", image: "/stops/central_3_bar.jpg" },
     ],
-    
     why: "Best first impression of Tokyo after-work drinking.",
   },
   {
@@ -48,29 +29,10 @@ const PLANS = [
     area: ["roppongi", "akasaka", "central"],
     must: ["barhop", "yakitori", "whisky"],
     stops: [
-      {
-        step: 1,
-        key: "izakaya",
-        name: "Izakaya classics",
-        note: "Fast, fun, reliable.",
-        image: "/stops/roppongi_1_izakaya.jpg",
-      },
-      {
-        step: 2,
-        key: "sake",
-        name: "Sake corner",
-        note: "Local pours, short menu, high hit-rate.",
-        image: "/stops/roppongi_2_sake.jpg",
-      },
-      {
-        step: 3,
-        key: "cocktail",
-        name: "Cocktail bar",
-        note: "A proper Tokyo ending.",
-        image: "/stops/roppongi_3_cocktail.jpg",
-      },
+      { step: 1, key: "izakaya", name: "Izakaya classics", note: "Fast, fun, reliable.", image: "/stops/roppongi_1_izakaya.jpg" },
+      { step: 2, key: "sake", name: "Sake corner", note: "Local pours, short menu, high hit-rate.", image: "/stops/roppongi_2_sake.jpg" },
+      { step: 3, key: "cocktail", name: "Cocktail bar", note: "A proper Tokyo ending.", image: "/stops/roppongi_3_cocktail.jpg" },
     ],
-    
     why: "Great for friends or business colleagues.",
   },
   {
@@ -82,21 +44,9 @@ const PLANS = [
     area: ["shibuya", "west"],
     must: ["beer", "barhop", "streetfood"],
     stops: [
-      {
-        step: 1,
-        key: "casual",
-        name: "Casual izakaya",
-        note: "Easy orders, big energy.",
-        image: "/stops/shibuya_1_casual.jpg",
-      },
-      {
-        step: 2,
-        key: "tachinomi",
-        name: "Tachinomi (standing bar)",
-        note: "Local vibe, quick sips.",
-        image: "/stops/shibuya_2_tachinomi.jpg",
-      },
-    ],    
+      { step: 1, key: "casual", name: "Casual izakaya", note: "Easy orders, big energy.", image: "/stops/shibuya_1_casual.jpg" },
+      { step: 2, key: "tachinomi", name: "Tachinomi (standing bar)", note: "Local vibe, quick sips.", image: "/stops/shibuya_2_tachinomi.jpg" },
+    ],
     why: "Best if you want speed + fun + options.",
   },
   {
@@ -108,29 +58,10 @@ const PLANS = [
     area: ["east"],
     must: ["seafood", "sake", "classic"],
     stops: [
-      {
-        step: 1,
-        key: "oldschool",
-        name: "Old-school izakaya",
-        note: "Handwritten menus, warm lights.",
-        image: "/stops/oldtokyo_1_oldschool.jpg",
-      },
-      {
-        step: 2,
-        key: "seafood",
-        name: "Grilled seafood",
-        note: "Charcoal + ocean.",
-        image: "/stops/oldtokyo_2_seafood.jpg",
-      },
-      {
-        step: 3,
-        key: "sake",
-        name: "Sake spot",
-        note: "Quiet pours, good conversation.",
-        image: "/stops/oldtokyo_3_sake.jpg",
-      },
+      { step: 1, key: "oldschool", name: "Old-school izakaya", note: "Handwritten menus, warm lights.", image: "/stops/oldtokyo_1_oldschool.jpg" },
+      { step: 2, key: "seafood", name: "Grilled seafood", note: "Charcoal + ocean.", image: "/stops/oldtokyo_2_seafood.jpg" },
+      { step: 3, key: "sake", name: "Sake spot", note: "Quiet pours, good conversation.", image: "/stops/oldtokyo_3_sake.jpg" },
     ],
-    
     why: "For atmosphere and story, not trendy hype.",
   },
   {
@@ -142,22 +73,9 @@ const PLANS = [
     area: ["south", "central"],
     must: ["wine", "smallplates", "quiet"],
     stops: [
-      {
-        step: 1,
-        key: "smallplates",
-        name: "Small plates",
-        note: "Seasonal, subtle, perfect pacing.",
-        image: "/stops/date_1_smallplates.jpg",
-      },
-      {
-        step: 2,
-        key: "wine",
-        name: "Wine/Sake bar",
-        note: "Low volume, high taste.",
-        image: "/stops/date_2_winebar.jpg",
-      },
+      { step: 1, key: "smallplates", name: "Small plates", note: "Seasonal, subtle, perfect pacing.", image: "/stops/date_1_smallplates.jpg" },
+      { step: 2, key: "wine", name: "Wine/Sake bar", note: "Low volume, high taste.", image: "/stops/date_2_winebar.jpg" },
     ],
-    
     why: "For couples who hate crowds.",
   },
 ];
@@ -234,9 +152,7 @@ function scorePlan(plan, a) {
 }
 
 function getBestPlan(answers) {
-  return PLANS
-    .map((p) => ({ p, s: scorePlan(p, answers) }))
-    .sort((x, y) => y.s - x.s)[0]?.p ?? PLANS[0];
+  return PLANS.map((p) => ({ p, s: scorePlan(p, answers) })).sort((x, y) => y.s - x.s)[0]?.p ?? PLANS[0];
 }
 
 // hash routing: "#/" or "#/thanks"
@@ -251,8 +167,7 @@ function scrollToId(id) {
   if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
 }
 
-function InstagramEmbed({ postUrl, profileUrl }) {
-  // instagram embed.jsが読み込まれている前提。描画後に再処理。
+function InstagramEmbed({ postUrl, profileUrl, title, subtitle, fallbackText, openText }) {
   useEffect(() => {
     if (window?.instgrm?.Embeds?.process) {
       window.instgrm.Embeds.process();
@@ -261,8 +176,8 @@ function InstagramEmbed({ postUrl, profileUrl }) {
 
   return (
     <div className="card">
-      <div className="cardTitle">Instagram</div>
-      <div className="cardText">Latest reel / post</div>
+      <div className="cardTitle">{title}</div>
+      <div className="cardText">{subtitle}</div>
       <div style={{ marginTop: 10 }}>
         <blockquote
           className="instagram-media"
@@ -272,16 +187,15 @@ function InstagramEmbed({ postUrl, profileUrl }) {
         />
       </div>
       <div className="small" style={{ marginTop: 10 }}>
-        If it doesn’t load,{" "}
+        {fallbackText}{" "}
         <a className="navLink" href={profileUrl} target="_blank" rel="noreferrer">
-          open Instagram
+          {openText}
         </a>
         .
       </div>
     </div>
   );
 }
-
 
 function Modal({ open, onClose, children }) {
   useEffect(() => {
@@ -309,7 +223,6 @@ function Modal({ open, onClose, children }) {
     </div>
   );
 }
-
 
 export default function App() {
   const [lang, setLang] = useState(CONFIG.defaultLang);
@@ -360,6 +273,23 @@ export default function App() {
 
   const quiz = QUESTIONS[step];
 
+  // quiz question title (move out from inline hardcode)
+  const quizQuestionTitle = useMemo(() => {
+    // if you define in i18n: t.quizQ = {with:'', vibe:'', ...} then use that.
+    const fromI18n = t.quizQ?.[quiz?.id];
+    if (fromI18n) return fromI18n;
+
+    // fallback (should be removed once i18n is complete)
+    const titles = {
+      with: { en: "Who are you traveling with?", ja: "誰と飲みますか？", zh: "和谁一起？", es: "¿Con quién?" },
+      vibe: { en: "What vibe tonight?", ja: "雰囲気は？", zh: "今晚氛围？", es: "¿Qué ambiente?" },
+      budget: { en: "Budget per person?", ja: "予算/人は？", zh: "人均预算？", es: "¿Presupuesto?" },
+      area: { en: "Preferred area?", ja: "エリアは？", zh: "区域偏好？", es: "¿Zona?" },
+      must: { en: "Must-have?", ja: "絶対条件は？", zh: "必选项？", es: "¿Imprescindible?" },
+    };
+    return titles[quiz.id]?.[lang] || titles[quiz.id]?.en || "";
+  }, [quiz?.id, lang, t.quizQ]);
+
   // ===== /thanks route =====
   if (route.path === "/thanks") {
     const paid = route.query.get("paid") === "1";
@@ -392,17 +322,12 @@ export default function App() {
             <p className="muted">{t.thanksSub}</p>
 
             <div style={{ marginTop: 16, maxWidth: 720 }}>
-              <a
-                className="btn btnPrimary btnBlock"
-                href={CONFIG.googleFormOmakaseBaseUrl}
-                target="_blank"
-                rel="noreferrer"
-              >
+              <a className="btn btnPrimary btnBlock" href={CONFIG.googleFormOmakaseBaseUrl} target="_blank" rel="noreferrer">
                 {t.goToForm}
               </a>
               {!paid && (
                 <p className="small" style={{ marginTop: 12 }}>
-                  If you arrived here without payment, please return and use the Omakase button.
+                  {t.thanksNoPaidWarning}
                 </p>
               )}
             </div>
@@ -430,10 +355,10 @@ export default function App() {
     <>
       <div className="topNav">
         <div className="topNavInner">
-        <div className="brand" onClick={() => (window.location.hash = "#/")} style={{ cursor: "pointer" }}>
-  <img src="/logo.png" alt="Logo" className="brandLogo" />
-  <span>{CONFIG.brandName}</span>
-</div>
+          <div className="brand" onClick={() => (window.location.hash = "#/")} style={{ cursor: "pointer" }}>
+            <img src="/logo.png" alt="Logo" className="brandLogo" />
+            <span>{CONFIG.brandName}</span>
+          </div>
 
           <div className="navLinks">
             <a className="navLink" href="#quiz" onClick={(e) => (e.preventDefault(), scrollToId("quiz"))}>
@@ -449,8 +374,8 @@ export default function App() {
               {t.navPricing}
             </a>
             <a className="navLink" href="#story" onClick={(e) => (e.preventDefault(), scrollToId("story"))}>
-  {t.navStory ?? "Story"}
-</a>
+              {t.navStory}
+            </a>
           </div>
 
           <div style={{ display: "flex", gap: 10, alignItems: "center" }}>
@@ -463,7 +388,7 @@ export default function App() {
             </select>
             <button className="btn btnPrimary" onClick={() => scrollToId("quiz")}>
               <span className="desktopOnly">{t.heroCtaPrimary}</span>
-              <span className="mobileOnly">Start Quiz</span>
+              <span className="mobileOnly">{t.heroCtaPrimaryMobile}</span>
             </button>
           </div>
         </div>
@@ -516,16 +441,7 @@ export default function App() {
                     {step + 1} / {QUESTIONS.length}
                   </div>
                   <div className="qTitle" style={{ marginTop: -6 }}>
-                    {(() => {
-                      const titles = {
-                        with: { en: "Who are you traveling with?", ja: "誰と飲みますか？", zh: "和谁一起？", es: "¿Con quién?" },
-                        vibe: { en: "What vibe tonight?", ja: "雰囲気は？", zh: "今晚氛围？", es: "¿Qué ambiente?" },
-                        budget: { en: "Budget per person?", ja: "予算/人は？", zh: "人均预算？", es: "¿Presupuesto?" },
-                        area: { en: "Preferred area?", ja: "エリアは？", zh: "区域偏好？", es: "¿Zona?" },
-                        must: { en: "Must-have?", ja: "絶対条件は？", zh: "必选项？", es: "¿Imprescindible?" },
-                      };
-                      return titles[quiz.id][lang] || titles[quiz.id].en;
-                    })()}
+                    {quizQuestionTitle}
                   </div>
 
                   <div className="optGrid">
@@ -550,7 +466,11 @@ export default function App() {
                   </button>
 
                   {step < QUESTIONS.length - 1 ? (
-                    <button className="btn btnPrimary" onClick={() => setStep((s) => Math.min(QUESTIONS.length - 1, s + 1))} disabled={!answers[quiz.id]}>
+                    <button
+                      className="btn btnPrimary"
+                      onClick={() => setStep((s) => Math.min(QUESTIONS.length - 1, s + 1))}
+                      disabled={!answers[quiz.id]}
+                    >
                       {t.next}
                     </button>
                   ) : (
@@ -573,95 +493,123 @@ export default function App() {
 
       {/* Plans */}
       <section className="section sectionAlt" id="plans">
-  <div className="container">
-    <h2 className="h2">{t.prefixSectionTitle}</h2>
-    <div className="muted" style={{ marginBottom: 16 }}>
-      Prefix is a preview. Exact restaurant names are shared after paid request to protect quality.
-    </div>
+        <div className="container">
+          <h2 className="h2">{t.prefixSectionTitle}</h2>
+          <div className="muted" style={{ marginBottom: 16 }}>
+            {t.prefixNote}
+          </div>
 
-    <div className="planStrip">
-      {PLANS.map((p) => (
-        <div key={p.id} className="planTile" style={{ backgroundImage: `url(${p.image})` }}>
-          <div className="planTileOverlay">
-            <div className="planTileTitle">{p.title}</div>
-            <div className="planTileMeta">{p.why}</div>
-            <div className="planTileChips">
-              {p.stops.slice(0, 3).map((s, idx) => (
-                <span key={idx} className="chip">{`Stop ${idx + 1}`}</span>
-              ))}
+          <div className="planStrip">
+            {PLANS.map((p) => (
+              <div key={p.id} className="planTile" style={{ backgroundImage: `url(${p.image})` }}>
+                <div className="planTileOverlay">
+                  <div className="planTileTitle">{p.title}</div>
+                  <div className="planTileMeta">{p.why}</div>
+                  <div className="planTileChips">
+                    {p.stops.slice(0, 3).map((_, idx) => (
+                      <span key={idx} className="chip">
+                        {typeof t.stopLabel === "function" ? t.stopLabel(idx + 1) : `Stop ${idx + 1}`}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <div className="timelineCard">
+            <div className="timelineTitle">{t.sampleFlowTitle}</div>
+
+            <div className="timelineRow">
+              <div className="tNode">
+                <div className="tDot" />
+                <div className="tText">
+                  <div className="tHead">{t.sampleStop1Head}</div>
+                  <div className="tSub">{t.sampleStop1Sub}</div>
+                </div>
+              </div>
+
+              <div className="tLine" />
+
+              <div className="tNode">
+                <div className="tDot" />
+                <div className="tText">
+                  <div className="tHead">{t.sampleStop2Head}</div>
+                  <div className="tSub">{t.sampleStop2Sub}</div>
+                </div>
+              </div>
+
+              <div className="tLine" />
+
+              <div className="tNode">
+                <div className="tDot" />
+                <div className="tText">
+                  <div className="tHead">{t.sampleStop3Head}</div>
+                  <div className="tSub">{t.sampleStop3Sub}</div>
+                </div>
+              </div>
+            </div>
+
+            <div className="stack10 mt14">
+              <a className="btn btnPrimary" href={omakaseFormUrl} target="_blank" rel="noreferrer">
+                {t.requestOmakasePaid}
+              </a>
+              <div className="small" style={{ marginTop: 10 }}>
+                {t.paymentAfterSubmission}
+              </div>
             </div>
           </div>
         </div>
-      ))}
-    </div>
-
-    <div className="timelineCard">
-      <div className="timelineTitle">A sample night flow</div>
-      <div className="timelineRow">
-        <div className="tNode">
-          <div className="tDot" />
-          <div className="tText">
-            <div className="tHead">Stop 1</div>
-            <div className="tSub">Hidden yakitori & highball</div>
-          </div>
-        </div>
-        <div className="tLine" />
-        <div className="tNode">
-          <div className="tDot" />
-          <div className="tText">
-            <div className="tHead">Stop 2</div>
-            <div className="tSub">Sake + seasonal plates</div>
-          </div>
-        </div>
-        <div className="tLine" />
-        <div className="tNode">
-          <div className="tDot" />
-          <div className="tText">
-            <div className="tHead">Stop 3</div>
-            <div className="tSub">Late-night bar (quiet finish)</div>
-          </div>
-        </div>
-      </div>
-
-      <div className="stack10 mt14">
-        <a className="btn btnPrimary" href={omakaseFormUrl} target="_blank" rel="noreferrer">
-          Request Omakase (paid)
-        </a>
-        <div className="small" style={{ marginTop: 10 }}>
-          Form → Payment link appears after submission.
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
+      </section>
 
       {/* How */}
       <section className="section" id="how">
         <div className="container">
           <h2 className="h2">{t.howTitle}</h2>
+          <div className="muted" style={{ marginTop: 8, maxWidth: 820 }}>
+            {t.howLead}
+          </div>
+
+          {/* “希望 → Omakase → 予約” */}
           <div className="grid3" style={{ marginTop: 12 }}>
             <div className="card">
-              <div className="cardTitle">1) Quiz</div>
-              <div className="cardText">Answer 5 questions → instant Prefix recommendation.</div>
+              <div className="cardTitle">{t.howStep1Title}</div>
+              <div className="cardText">{t.howStep1Text}</div>
             </div>
             <div className="card">
-              <div className="cardTitle">2) Omakase</div>
-              <div className="cardText">Pay $30 → tell constraints → we draft a night.</div>
+              <div className="cardTitle">{t.howStep2Title}</div>
+              <div className="cardText">{t.howStep2Text}</div>
             </div>
             <div className="card">
-              <div className="cardTitle">3) Reservation help</div>
-              <div className="cardText">If you approve, we attempt reservations where possible.</div>
+              <div className="cardTitle">{t.howStep3Title}</div>
+              <div className="cardText">{t.howStep3Text}</div>
             </div>
           </div>
 
+          {/* quiz is a hook */}
+          <div style={{ marginTop: 14, maxWidth: 720 }}>
+            <div className="card">
+              <div className="cardTitle">{t.howQuizCtaTitle}</div>
+              <div className="cardText">{t.howQuizCtaText}</div>
+              <div className="mt12">
+                <button className="btn btnPrimary btnBlock" onClick={() => scrollToId("quiz")}>
+                  {t.heroCtaPrimary}
+                </button>
+              </div>
+              <div className="small" style={{ marginTop: 10 }}>
+                {t.quizHookNote}
+              </div>
+            </div>
+          </div>
+
+          {/* Instagram */}
           <div style={{ marginTop: 14, maxWidth: 620 }}>
             <div className="card">
-              <div className="cardTitle">Instagram</div>
-              <div className="cardText">Social proof + vibe. Huge for conversion.</div>
+              <div className="cardTitle">{t.howInstagramTitle}</div>
+              <div className="cardText">{t.howInstagramText}</div>
               <div className="mt12">
                 <a className="btn btnPrimary btnBlock" href={CONFIG.instagramProfileUrl} target="_blank" rel="noreferrer">
-                  Open Instagram
+                  {t.openInstagram}
                 </a>
               </div>
             </div>
@@ -669,222 +617,194 @@ export default function App() {
 
           {/* 埋め込み（任意） */}
           <div style={{ marginTop: 14, maxWidth: 720 }}>
-            <InstagramEmbed postUrl={CONFIG.instagramEmbedPostUrl} profileUrl={CONFIG.instagramProfileUrl} />
+            <InstagramEmbed
+              postUrl={CONFIG.instagramEmbedPostUrl}
+              profileUrl={CONFIG.instagramProfileUrl}
+              title={t.howInstagramTitle}
+              subtitle={t.igLatest}
+              fallbackText={t.igFallback}
+              openText={t.openInstagram}
+            />
           </div>
         </div>
       </section>
 
       {/* Story */}
-<section className="section" id="story">
-  <div className="container">
-    <div className="storyHeader">
-      <h2 className="h2">{t.storyTitle ?? "Our Story"}</h2>
-      <div className="muted" style={{ maxWidth: 820 }}>
-        {t.storyLead ??
-          "Three Tokyo salarymen. Years of after-work research. A quiet promise: no tourist traps, no guessing — just the right night."}
-      </div>
-    </div>
-
-    <div className="storyGrid">
-      <div className="storyCard">
-        <div className="storyKicker">{t.storyKicker1 ?? "Why we exist"}</div>
-        <div className="storyTitle">
-          {t.storyHead1 ?? "Tokyo’s best nights are hidden — and they’re not on Google."}
-        </div>
-        <div className="storyText">
-          {t.storyBody1 ??
-            "We noticed something: the truly great izakaya and bars rarely appear in tourist feeds. They live in introductions, regulars, and quiet streets. So we built a service that feels like a trusted friend in Tokyo — with taste."}
-        </div>
-      </div>
-
-      <div className="storyCard">
-        <div className="storyKicker">{t.storyKicker2 ?? "How it works"}</div>
-        <div className="storyTitle">{t.storyHead2 ?? "Omakase planning, with guardrails."}</div>
-        <div className="storyText">
-          {t.storyBody2 ??
-            "You tell us who you’re with, the vibe, budget, and area. We propose a night flow — then reroll up to 3 times until it feels perfect. Exact restaurant names are shared after paid request to protect quality and availability."}
-        </div>
-
-        <div className="storyPills">
-          <div className="trustPill">{t.storyPill1 ?? "Curated by locals"}</div>
-          <div className="trustPill">{t.storyPill2 ?? "No tourist traps"}</div>
-          <div className="trustPill">{t.storyPill3 ?? "Reservations supported"}</div>
-        </div>
-      </div>
-
-      <div className="storyCard storyCardWide">
-        <div className="storyKicker">{t.storyKicker3 ?? "What you get"}</div>
-        <div className="storyTitle">{t.storyHead3 ?? "A night that feels effortless."}</div>
-        <div className="storyText">
-          {t.storyBody3 ??
-            "A clean plan. The right pacing. The kind of places where conversations land softly. If Tokyo is overwhelming, we narrow it down to what matters — and make the night yours."}
-        </div>
-
-        <div className="storyCtaRow">
-          <button className="btn btnPrimary" onClick={() => scrollToId("quiz")}>
-            {t.heroCtaPrimary ?? "Start the quiz"}
-          </button>
-          <a className="btn btnBlock" href={CONFIG.instagramProfileUrl} target="_blank" rel="noreferrer">
-            {t.storyCta2 ?? "See the vibe on Instagram"}
-          </a>
-        </div>
-      </div>
-    </div>
-
-    {/* Founders */}
-    <div className="foundersHeader">
-      <h2 className="h2">{t.foundersTitle ?? "Founders"}</h2>
-      <div className="muted" style={{ maxWidth: 820 }}>
-        {t.foundersLead ??
-          "We’re not a tour company. We’re three friends who care about taste, pace, and the kind of night you’ll remember."}
-      </div>
-    </div>
-
-    <div className="foundersGrid">
-      <div className="founderCard">
-        <div className="founderTop">
-        <div className="avatar avatarW">
-          <span className="avatarInitial">W</span>
-        </div>
-          <div>
-            <div className="founderName">Wataru</div>
-            <div className="founderRole">{t.role1 ?? "Planner / Reservations"}</div>
+      <section className="section" id="story">
+        <div className="container">
+          <div className="storyHeader">
+            <h2 className="h2">{t.storyTitle}</h2>
+            <div className="muted" style={{ maxWidth: 820 }}>
+              {t.storyLead}
+            </div>
           </div>
-        </div>
-        <div className="founderBio">
-          {t.bio1 ??
-            "Canada-born, Japan-raised. Quietly obsessed with finding the one perfect place for the moment. Handles planning ops and makes the night frictionless."}
-        </div>
-        <div className="founderTags">
-          <span className="chip">{t.tag1a ?? "Sake"}</span>
-          <span className="chip">{t.tag1b ?? "Hidden gems"}</span>
-          <span className="chip">{t.tag1c ?? "Logistics"}</span>
-        </div>
-      </div>
 
-      <div className="founderCard">
-        <div className="founderTop">
-        <div className="avatar avatarK">
-          <span className="avatarInitial">K</span>
-        </div>
-          <div>
-            <div className="founderName">Kei</div>
-            <div className="founderRole">{t.role2 ?? "Brand / Taste"}</div>
-          </div>
-        </div>
-        <div className="founderBio">
-          {t.bio2 ??
-            "Ad agency. Singapore-trained palate. Turns ‘good’ into ‘I can’t believe we found this’. Curates vibe-forward spots and makes the story land."}
-        </div>
-        <div className="founderTags">
-          <span className="chip">{t.tag2a ?? "Bar hopping"}</span>
-          <span className="chip">{t.tag2b ?? "Cocktails"}</span>
-          <span className="chip">{t.tag2c ?? "Design sense"}</span>
-        </div>
-      </div>
+          <div className="storyGrid">
+            <div className="storyCard">
+              <div className="storyKicker">{t.storyKicker1}</div>
+              <div className="storyTitle">{t.storyHead1}</div>
+              <div className="storyText">{t.storyBody1}</div>
+            </div>
 
-      <div className="founderCard">
-        <div className="founderTop">
-        <div className="avatar avatarH">
-          <span className="avatarInitial">H</span>
-        </div>
-          <div>
-            <div className="founderName">Hiraku</div>
-            <div className="founderRole">{t.role3 ?? "Strategy / Systems"}</div>
-          </div>
-        </div>
-        <div className="founderBio">
-          {t.bio3 ??
-            "Consulting manager. Portland-seasoned. Builds the system that keeps quality high — and makes sure every plan feels personal, not generic."}
-        </div>
-        <div className="founderTags">
-          <span className="chip">{t.tag3a ?? "Yakitori"}</span>
-          <span className="chip">{t.tag3b ?? "Whisky"}</span>
-          <span className="chip">{t.tag3c ?? "Precision"}</span>
-        </div>
-      </div>
-    </div>
+            <div className="storyCard">
+              <div className="storyKicker">{t.storyKicker2}</div>
+              <div className="storyTitle">{t.storyHead2}</div>
+              <div className="storyText">{t.storyBody2}</div>
 
-    <div className="foundersBottom">
-      <div className="card">
-        <div className="cardTitle">{t.promiseTitle ?? "Our promise"}</div>
-        <div className="cardText">
-          {t.promiseBody ??
-            "We keep restaurant names protected until paid request, to preserve availability and avoid crowds. The goal is quality nights — not mass tourism."}
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-      {/* Pricing */}
-
-        <section className="section sectionAlt" id="pricing">
-          <div className="container">
-            <h2 className="h2">{t.pricingTitle}</h2>
-
-            <div className="grid3" style={{ marginTop: 12 }}>
-              {/* Prefix = 例（リンクなし） */}
-              <div className="card">
-                <div className="cardTitle">Prefix (Preview)</div>
-                <div className="cardText">
-                  Free preview on this page — sample routes & “stops” only.  
-                  Restaurant names are not shown.
-                </div>
-                <div style={{ marginTop: 12 }}>
-                  <button className="btn btnBlock" onClick={() => scrollToId("plans")}>
-                    See Prefix examples
-                  </button>
-                </div>
+              <div className="storyPills">
+                <div className="trustPill">{t.storyPill1}</div>
+                <div className="trustPill">{t.storyPill2}</div>
+                <div className="trustPill">{t.storyPill3}</div>
               </div>
+            </div>
 
-              {/* Omakase = フォームへ */}
-              <div className="card">
-                <div className="cardTitle">Omakase</div>
-                <div className="cardText">$30 — custom plan + up to 3 rerolls.</div>
-                <div style={{ marginTop: 12 }}>
-                  <a className="btn btnPrimary btnBlock" href={omakaseFormUrl} target="_blank" rel="noreferrer">
-                    Request Omakase ($30)
-                  </a>
-                </div>
-                <div className="small" style={{ marginTop: 10 }}>
-                  Submit the form first — payment link appears after submission.
-                </div>
-              </div>
+            <div className="storyCard storyCardWide">
+              <div className="storyKicker">{t.storyKicker3}</div>
+              <div className="storyTitle">{t.storyHead3}</div>
+              <div className="storyText">{t.storyBody3}</div>
 
-              {/* Group = いったんメール/Instagramへ */}
-              <div className="card">
-                <div className="cardTitle">Group night</div>
-                <div className="cardText">6+ people — corporate / team. We’ll quote.</div>
-                <div style={{ marginTop: 12, display: "grid", gap: 10 }}>
-                  <a className="btn btnBlock" href={CONFIG.instagramProfileUrl} target="_blank" rel="noreferrer">
-                    DM on Instagram
-                  </a>
-                  {/* もしメール置きたいなら configに入れて使う */}
-                  {/* <a className="btn btnBlock" href={`mailto:${CONFIG.contactEmail}`}>Email us</a> */}
-                </div>
+              <div className="storyCtaRow">
+                <button className="btn btnPrimary" onClick={() => scrollToId("quiz")}>
+                  {t.heroCtaPrimary}
+                </button>
+                <a className="btn btnBlock" href={CONFIG.instagramProfileUrl} target="_blank" rel="noreferrer">
+                  {t.storyCta2}
+                </a>
               </div>
             </div>
           </div>
-        </section>
 
+          {/* Founders */}
+          <div className="foundersHeader">
+            <h2 className="h2">{t.foundersTitle}</h2>
+            <div className="muted" style={{ maxWidth: 820 }}>
+              {t.foundersLead}
+            </div>
+          </div>
+
+          <div className="foundersGrid">
+            <div className="founderCard">
+              <div className="founderTop">
+                <div className="avatar avatarW">
+                  <span className="avatarInitial">W</span>
+                </div>
+                <div>
+                  <div className="founderName">Wataru</div>
+                  <div className="founderRole">{t.role1}</div>
+                </div>
+              </div>
+              <div className="founderBio">{t.bio1}</div>
+              <div className="founderTags">
+                <span className="chip">{t.tag1a}</span>
+                <span className="chip">{t.tag1b}</span>
+                <span className="chip">{t.tag1c}</span>
+              </div>
+            </div>
+
+            <div className="founderCard">
+              <div className="founderTop">
+                <div className="avatar avatarK">
+                  <span className="avatarInitial">K</span>
+                </div>
+                <div>
+                  <div className="founderName">Kei</div>
+                  <div className="founderRole">{t.role2}</div>
+                </div>
+              </div>
+              <div className="founderBio">{t.bio2}</div>
+              <div className="founderTags">
+                <span className="chip">{t.tag2a}</span>
+                <span className="chip">{t.tag2b}</span>
+                <span className="chip">{t.tag2c}</span>
+              </div>
+            </div>
+
+            <div className="founderCard">
+              <div className="founderTop">
+                <div className="avatar avatarH">
+                  <span className="avatarInitial">H</span>
+                </div>
+                <div>
+                  <div className="founderName">Hiraku</div>
+                  {/* ✅ CEO 明示は i18n の role3 で実施（例: "CEO / Strategy / Systems"） */}
+                  <div className="founderRole">{t.role3}</div>
+                </div>
+              </div>
+              <div className="founderBio">{t.bio3}</div>
+              <div className="founderTags">
+                <span className="chip">{t.tag3a}</span>
+                <span className="chip">{t.tag3b}</span>
+                <span className="chip">{t.tag3c}</span>
+              </div>
+            </div>
+          </div>
+
+          <div className="foundersBottom">
+            <div className="card">
+              <div className="cardTitle">{t.promiseTitle}</div>
+              <div className="cardText">{t.promiseBody}</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Pricing */}
+      <section className="section sectionAlt" id="pricing">
+        <div className="container">
+          <h2 className="h2">{t.pricingTitle}</h2>
+
+          <div className="grid3" style={{ marginTop: 12 }}>
+            <div className="card">
+              <div className="cardTitle">{t.pricingPrefixTitle}</div>
+              <div className="cardText">{t.pricingPrefixText}</div>
+              <div style={{ marginTop: 12 }}>
+                <button className="btn btnBlock" onClick={() => scrollToId("plans")}>
+                  {t.pricingPrefixCta}
+                </button>
+              </div>
+            </div>
+
+            <div className="card">
+              <div className="cardTitle">{t.pricingOmakaseTitle}</div>
+              <div className="cardText">{t.pricingOmakaseText}</div>
+              <div style={{ marginTop: 12 }}>
+                <a className="btn btnPrimary btnBlock" href={omakaseFormUrl} target="_blank" rel="noreferrer">
+                  {t.pricingOmakaseCta}
+                </a>
+              </div>
+              <div className="small" style={{ marginTop: 10 }}>
+                {t.pricingOmakaseNote}
+              </div>
+            </div>
+
+            <div className="card">
+              <div className="cardTitle">{t.pricingGroupTitle}</div>
+              <div className="cardText">{t.pricingGroupText}</div>
+              <div style={{ marginTop: 12, display: "grid", gap: 10 }}>
+                <a className="btn btnBlock" href={CONFIG.instagramProfileUrl} target="_blank" rel="noreferrer">
+                  {t.pricingGroupCta}
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
 
       {/* Footer */}
       <div className="footer">
         <div className="container footerInner">
           <div>
-          <div className="brand">
+            <div className="brand">
               <img src="/logo.png" alt="Logo" className="brandLogo" />
               <span>{CONFIG.brandName}</span>
             </div>
             <div className="small">{CONFIG.tagline}</div>
           </div>
+
           <div className="small" style={{ maxWidth: 720 }}>
             {t.disclaimer}
             <br />
-            <span style={{ opacity: 0.9 }}>
-              Refund/cancel: You can define “planning fee is non-refundable once drafting starts” (recommended).
-            </span>
+            <span style={{ opacity: 0.9 }}>{t.refundNote}</span>
           </div>
         </div>
       </div>
@@ -913,7 +833,8 @@ export default function App() {
                     </div>
 
                     <div className="rtBody">
-                      <div className="rtImg" style={{ backgroundImage: `url(${s.image || p.image})` }} />
+                      {/* ✅ p.image バグ修正：pickedPlan.image を使用 */}
+                      <div className="rtImg" style={{ backgroundImage: `url(${s.image || pickedPlan.image})` }} />
                       <div className="rtText">
                         <div className="rtNote">{s.note}</div>
                         <div className="rtMeta">
@@ -926,26 +847,23 @@ export default function App() {
               ))}
             </div>
 
-
             <div className="card" style={{ marginTop: 14 }}>
-              <div className="cardTitle">Why it fits</div>
+              <div className="cardTitle">{t.resultWhyTitle}</div>
               <div className="cardText">{pickedPlan.why}</div>
             </div>
 
             <div className="modalCtas">
-                  {/* ✅ 有料申込フォームへ（prefill） */}
-                  <a className="btn btnPrimary btnBlock" href={omakaseFormUrl} target="_blank" rel="noreferrer">
-                      Request Omakase ($30)
-                    </a>
-                    <div className="small" style={{ marginTop: 10 }}>
-                      Submit the form first — payment link appears after submission.
-                    </div>
-                </div>
-
+              <a className="btn btnPrimary btnBlock" href={omakaseFormUrl} target="_blank" rel="noreferrer">
+                {t.pricingOmakaseCta}
+              </a>
+              <div className="small" style={{ marginTop: 10 }}>
+                {t.paymentAfterSubmission}
+              </div>
+            </div>
 
             <details style={{ marginTop: 14 }}>
               <summary className="small" style={{ cursor: "pointer" }}>
-                Copy summary (paste into form if needed)
+                {t.resultCopySummary}
               </summary>
               <textarea
                 className="textarea"
@@ -963,7 +881,7 @@ export default function App() {
 
             <div style={{ marginTop: 10 }}>
               <a className="small" href={omakaseFormUrl} target="_blank" rel="noreferrer">
-                (If already paid) Open the form again (prefilled)
+                {t.resultOpenFormAgain}
               </a>
             </div>
           </>
