@@ -152,6 +152,11 @@ export const LANGS = [
         "Disclaimer: We curate suggestions and can help with reservations where possible. We do not guarantee availability. We are not a travel agency.",
       refundNote:
         "Refund/cancel: You can define “planning fee is non-refundable once drafting starts” (recommended).",
+        stepLabel: (n) => `STEP ${n}`,
+        stopLabelInline: (n) => `Stop ${n}`,
+        areaLabel: "Area",
+        vibeLabel: "Vibe",
+        igLatest: "Latest reel / post",
     },
   
     ja: {
@@ -289,6 +294,11 @@ export const LANGS = [
         "免責：当サービスは飲食店の提案および可能な範囲での予約支援を行います。予約成功や空席を保証しません。旅行業（移動・宿泊手配等）ではありません。",
       refundNote:
         "返金/キャンセル：『作成開始後はプランニング費用は返金不可』等のルール設定を推奨します。",
+        stepLabel: (n) => `STEP ${n}`,
+        stopLabelInline: (n) => `Stop ${n}`,
+        areaLabel: "エリア",
+        vibeLabel: "雰囲気",
+        igLatest: "最新の投稿 / リール",
     },
   
     zh: {
@@ -423,6 +433,12 @@ export const LANGS = [
         "免责声明：我们提供建议并在可能情况下协助预约，不保证有位。我们不是旅行社。",
       refundNote:
         "退款/取消：建议设置“开始制作后规划费不退”等规则。",
+
+        stepLabel: (n) => `第${n}步`,
+        stopLabelInline: (n) => `第${n}站`,
+        areaLabel: "区域",
+        vibeLabel: "氛围",
+        igLatest: "最新帖子 / Reels",
     },
   
     es: {
@@ -560,5 +576,10 @@ export const LANGS = [
         "Aviso: Curamos sugerencias y ayudamos con reservas cuando sea posible. No garantizamos disponibilidad. No somos agencia de viajes.",
       refundNote:
         "Reembolso/cancelación: recomendamos definir “la tarifa de planificación no es reembolsable una vez que empezamos”.",
+        stepLabel: (n) => `PASO ${n}`,
+        stopLabelInline: (n) => `Parada ${n}`,
+        areaLabel: "Zona",
+        vibeLabel: "Ambiente",
+        igLatest: "Último reel / post",
     },
   };

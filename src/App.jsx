@@ -4,81 +4,283 @@ import { LANGS, STRINGS } from "./i18n";
 import { FORM_FIELDS, buildGoogleFormPrefillUrl } from "./formPrefill";
 
 // ===== Plans (店名出しすぎない運用) =====
-const PLANS = [
-  {
-    id: "central-3",
-    image: "/prefix/p1.jpg",
-    title: "Central Tokyo: 3 Stops, Zero Guessing",
-    vibe: ["quiet", "classic", "business"],
-    budget: ["mid", "high"],
-    area: ["central", "ginza"],
-    must: ["sake", "yakitori", "whisky"],
-    stops: [
-      { step: 1, key: "yakitori", name: "Hidden Yakitori", note: "Charcoal, perfect highballs, no tourist traps.", image: "/stops/central_1_yakitori.jpg" },
-      { step: 2, key: "sake", name: "Sake + Seasonal plates", note: "Pairings that feel ‘Tokyo’.", image: "/stops/central_2_sake.jpg" },
-      { step: 3, key: "bar", name: "Late-night bar", note: "Clean finish — quiet and classy.", image: "/stops/central_3_bar.jpg" },
-    ],
-    why: "Best first impression of Tokyo after-work drinking.",
-  },
-  {
-    id: "roppongi-akasaka",
-    image: "/prefix/p2.jpg",
-    title: "Roppongi → Akasaka: Lively but polished",
-    vibe: ["lively", "business", "classic"],
-    budget: ["mid", "high"],
-    area: ["roppongi", "akasaka", "central"],
-    must: ["barhop", "yakitori", "whisky"],
-    stops: [
-      { step: 1, key: "izakaya", name: "Izakaya classics", note: "Fast, fun, reliable.", image: "/stops/roppongi_1_izakaya.jpg" },
-      { step: 2, key: "sake", name: "Sake corner", note: "Local pours, short menu, high hit-rate.", image: "/stops/roppongi_2_sake.jpg" },
-      { step: 3, key: "cocktail", name: "Cocktail bar", note: "A proper Tokyo ending.", image: "/stops/roppongi_3_cocktail.jpg" },
-    ],
-    why: "Great for friends or business colleagues.",
-  },
-  {
-    id: "shibuya-casual",
-    image: "/prefix/p3.jpg",
-    title: "Shibuya: Casual izakaya + standing bar",
-    vibe: ["casual", "lively"],
-    budget: ["low", "mid"],
-    area: ["shibuya", "west"],
-    must: ["beer", "barhop", "streetfood"],
-    stops: [
-      { step: 1, key: "casual", name: "Casual izakaya", note: "Easy orders, big energy.", image: "/stops/shibuya_1_casual.jpg" },
-      { step: 2, key: "tachinomi", name: "Tachinomi (standing bar)", note: "Local vibe, quick sips.", image: "/stops/shibuya_2_tachinomi.jpg" },
-    ],
-    why: "Best if you want speed + fun + options.",
-  },
-  {
-    id: "oldtokyo",
-    image: "/prefix/p4.jpg",
-    title: "Old Tokyo: Traditional izakaya crawl",
-    vibe: ["classic", "casual"],
-    budget: ["mid"],
-    area: ["east"],
-    must: ["seafood", "sake", "classic"],
-    stops: [
-      { step: 1, key: "oldschool", name: "Old-school izakaya", note: "Handwritten menus, warm lights.", image: "/stops/oldtokyo_1_oldschool.jpg" },
-      { step: 2, key: "seafood", name: "Grilled seafood", note: "Charcoal + ocean.", image: "/stops/oldtokyo_2_seafood.jpg" },
-      { step: 3, key: "sake", name: "Sake spot", note: "Quiet pours, good conversation.", image: "/stops/oldtokyo_3_sake.jpg" },
-    ],
-    why: "For atmosphere and story, not trendy hype.",
-  },
-  {
-    id: "date-quiet",
-    image: "/prefix/p5.jpg",
-    title: "Quiet date night: small plates + wine/sake",
-    vibe: ["quiet", "date"],
-    budget: ["mid", "high"],
-    area: ["south", "central"],
-    must: ["wine", "smallplates", "quiet"],
-    stops: [
-      { step: 1, key: "smallplates", name: "Small plates", note: "Seasonal, subtle, perfect pacing.", image: "/stops/date_1_smallplates.jpg" },
-      { step: 2, key: "wine", name: "Wine/Sake bar", note: "Low volume, high taste.", image: "/stops/date_2_winebar.jpg" },
-    ],
-    why: "For couples who hate crowds.",
-  },
-];
+/* =========================
+   ✅ PLANS を全部 i18 化した完全版（コピペで置き換え）
+   - title / why / stops[].name / stops[].note を {en,ja,zh,es} 化
+   ========================= */
+
+   const PLANS = [
+    {
+      id: "central-3",
+      image: "/prefix/p1.jpg",
+      title: {
+        en: "Central Tokyo: 3 Stops, Zero Guessing",
+        ja: "都心：3軒はしご、迷いゼロ",
+        zh: "东京市中心：3站连走，不用猜",
+        es: "Centro de Tokio: 3 paradas, cero dudas",
+      },
+      vibe: ["quiet", "classic", "business"],
+      budget: ["mid", "high"],
+      area: ["central", "ginza"],
+      must: ["sake", "yakitori", "whisky"],
+      stops: [
+        {
+          step: 1,
+          key: "yakitori",
+          name: { en: "Hidden Yakitori", ja: "隠れ家焼き鳥", zh: "隐藏烤鸡串", es: "Yakitori escondido" },
+          note: {
+            en: "Charcoal, perfect highballs, no tourist traps.",
+            ja: "炭火、最高のハイボール。観光客向けは回避。",
+            zh: "炭火烤制，高球很稳，避开游客陷阱。",
+            es: "Carbón, highballs perfectos, sin trampas turísticas.",
+          },
+          image: "/stops/central_1_yakitori.jpg",
+        },
+        {
+          step: 2,
+          key: "sake",
+          name: { en: "Sake + Seasonal plates", ja: "日本酒＋季節の小皿", zh: "清酒＋时令小菜", es: "Sake + platos de temporada" },
+          note: {
+            en: "Pairings that feel ‘Tokyo’.",
+            ja: "“東京らしさ”のあるペアリング。",
+            zh: "很“东京”的搭配体验。",
+            es: "Maridajes que se sienten ‘Tokio’.",
+          },
+          image: "/stops/central_2_sake.jpg",
+        },
+        {
+          step: 3,
+          key: "bar",
+          name: { en: "Late-night bar", ja: "深夜のバー", zh: "深夜酒吧", es: "Bar nocturno" },
+          note: {
+            en: "Clean finish — quiet and classy.",
+            ja: "綺麗に締める。静かで上質。",
+            zh: "干净收尾——安静又高级。",
+            es: "Cierre limpio — tranquilo y con clase.",
+          },
+          image: "/stops/central_3_bar.jpg",
+        },
+      ],
+      why: {
+        en: "Best first impression of Tokyo after-work drinking.",
+        ja: "仕事終わりの“東京の第一印象”に最適。",
+        zh: "最适合作为下班后体验东京的第一印象。",
+        es: "La mejor primera impresión del Tokio de afterwork.",
+      },
+    },
+  
+    {
+      id: "roppongi-akasaka",
+      image: "/prefix/p2.jpg",
+      title: {
+        en: "Roppongi → Akasaka: Lively but polished",
+        ja: "六本木 → 赤坂：賑やかだけど上品",
+        zh: "六本木→赤坂：热闹但精致",
+        es: "Roppongi → Akasaka: animado pero refinado",
+      },
+      vibe: ["lively", "business", "classic"],
+      budget: ["mid", "high"],
+      area: ["roppongi", "akasaka", "central"],
+      must: ["barhop", "yakitori", "whisky"],
+      stops: [
+        {
+          step: 1,
+          key: "izakaya",
+          name: { en: "Izakaya classics", ja: "王道居酒屋", zh: "经典居酒屋", es: "Clásicos de izakaya" },
+          note: {
+            en: "Fast, fun, reliable.",
+            ja: "早い、楽しい、外さない。",
+            zh: "节奏快、好玩、很稳。",
+            es: "Rápido, divertido, fiable.",
+          },
+          image: "/stops/roppongi_1_izakaya.jpg",
+        },
+        {
+          step: 2,
+          key: "sake",
+          name: { en: "Sake corner", ja: "日本酒コーナー", zh: "清酒角", es: "Rincón de sake" },
+          note: {
+            en: "Local pours, short menu, high hit-rate.",
+            ja: "地元の一杯。短いメニューで当たり率高め。",
+            zh: "本地酒单、菜单精简、命中率高。",
+            es: "Copas locales, menú corto, alto acierto.",
+          },
+          image: "/stops/roppongi_2_sake.jpg",
+        },
+        {
+          step: 3,
+          key: "cocktail",
+          name: { en: "Cocktail bar", ja: "カクテルバー", zh: "鸡尾酒吧", es: "Bar de cócteles" },
+          note: {
+            en: "A proper Tokyo ending.",
+            ja: "“東京の締め”として間違いない。",
+            zh: "一个很“东京”的收尾。",
+            es: "Un final tokioísta como se debe.",
+          },
+          image: "/stops/roppongi_3_cocktail.jpg",
+        },
+      ],
+      why: {
+        en: "Great for friends or business colleagues.",
+        ja: "友人にも接待にも相性が良い。",
+        zh: "适合朋友或商务同事。",
+        es: "Ideal para amigos o colegas de negocios.",
+      },
+    },
+  
+    {
+      id: "shibuya-casual",
+      image: "/prefix/p3.jpg",
+      title: {
+        en: "Shibuya: Casual izakaya + standing bar",
+        ja: "渋谷：気軽な居酒屋＋立ち飲み",
+        zh: "涩谷：轻松居酒屋＋立饮酒吧",
+        es: "Shibuya: Izakaya casual + bar de pie",
+      },
+      vibe: ["casual", "lively"],
+      budget: ["low", "mid"],
+      area: ["shibuya", "west"],
+      must: ["beer", "barhop", "streetfood"],
+      stops: [
+        {
+          step: 1,
+          key: "casual",
+          name: { en: "Casual izakaya", ja: "気軽な居酒屋", zh: "轻松居酒屋", es: "Izakaya casual" },
+          note: {
+            en: "Easy orders, big energy.",
+            ja: "注文しやすく、活気があって入りやすい。",
+            zh: "点单简单，氛围热闹。",
+            es: "Fácil de pedir, mucha energía.",
+          },
+          image: "/stops/shibuya_1_casual.jpg",
+        },
+        {
+          step: 2,
+          key: "tachinomi",
+          name: { en: "Tachinomi (standing bar)", ja: "立ち飲み", zh: "立饮酒吧", es: "Tachinomi (bar de pie)" },
+          note: {
+            en: "Local vibe, quick sips.",
+            ja: "ローカル感。短時間でサクッと一杯。",
+            zh: "本地氛围，快速小酌。",
+            es: "Vibra local, tragos rápidos.",
+          },
+          image: "/stops/shibuya_2_tachinomi.jpg",
+        },
+      ],
+      why: {
+        en: "Best if you want speed + fun + options.",
+        ja: "テンポよく、楽しく、選択肢も多い夜に最適。",
+        zh: "适合想要节奏快、好玩、选择多的夜晚。",
+        es: "Ideal si quieres rapidez + diversión + opciones.",
+      },
+    },
+  
+    {
+      id: "oldtokyo",
+      image: "/prefix/p4.jpg",
+      title: {
+        en: "Old Tokyo: Traditional izakaya crawl",
+        ja: "下町：渋い居酒屋はしご",
+        zh: "老东京：传统居酒屋巡游",
+        es: "Viejo Tokio: ruta clásica de izakayas",
+      },
+      vibe: ["classic", "casual"],
+      budget: ["mid"],
+      area: ["east"],
+      must: ["seafood", "sake", "classic"],
+      stops: [
+        {
+          step: 1,
+          key: "oldschool",
+          name: { en: "Old-school izakaya", ja: "渋い老舗居酒屋", zh: "老派居酒屋", es: "Izakaya de toda la vida" },
+          note: {
+            en: "Handwritten menus, warm lights.",
+            ja: "手書きメニュー、温かい灯り。",
+            zh: "手写菜单，暖黄灯光。",
+            es: "Menús a mano, luces cálidas.",
+          },
+          image: "/stops/oldtokyo_1_oldschool.jpg",
+        },
+        {
+          step: 2,
+          key: "seafood",
+          name: { en: "Grilled seafood", ja: "海鮮の炭火焼き", zh: "炭烤海鲜", es: "Marisco a la parrilla" },
+          note: {
+            en: "Charcoal + ocean.",
+            ja: "炭火＋海の香り。",
+            zh: "炭火＋海的味道。",
+            es: "Carbón + sabor a mar.",
+          },
+          image: "/stops/oldtokyo_2_seafood.jpg",
+        },
+        {
+          step: 3,
+          key: "sake",
+          name: { en: "Sake spot", ja: "日本酒の一軒", zh: "清酒小店", es: "Rincón de sake" },
+          note: {
+            en: "Quiet pours, good conversation.",
+            ja: "静かな一杯。会話が進む。",
+            zh: "安静小酌，适合聊天。",
+            es: "Copas tranquilas, buena conversación.",
+          },
+          image: "/stops/oldtokyo_3_sake.jpg",
+        },
+      ],
+      why: {
+        en: "For atmosphere and story, not trendy hype.",
+        ja: "流行より“空気”と“物語”重視の人へ。",
+        zh: "给重视氛围与故事、而非潮流的人。",
+        es: "Para ambiente e historia, no para modas.",
+      },
+    },
+  
+    {
+      id: "date-quiet",
+      image: "/prefix/p5.jpg",
+      title: {
+        en: "Quiet date night: small plates + wine/sake",
+        ja: "静かなデート：小皿＋ワイン/日本酒",
+        zh: "安静约会夜：小盘菜＋葡萄酒/清酒",
+        es: "Cita tranquila: platitos + vino/sake",
+      },
+      vibe: ["quiet", "date"],
+      budget: ["mid", "high"],
+      area: ["south", "central"],
+      must: ["wine", "smallplates", "quiet"],
+      stops: [
+        {
+          step: 1,
+          key: "smallplates",
+          name: { en: "Small plates", ja: "季節の小皿", zh: "时令小盘菜", es: "Platitos" },
+          note: {
+            en: "Seasonal, subtle, perfect pacing.",
+            ja: "季節感、繊細さ、テンポがちょうどいい。",
+            zh: "应季、细腻、节奏刚好。",
+            es: "De temporada, sutil, ritmo perfecto.",
+          },
+          image: "/stops/date_1_smallplates.jpg",
+        },
+        {
+          step: 2,
+          key: "wine",
+          name: { en: "Wine/Sake bar", ja: "ワイン/日本酒バー", zh: "葡萄酒/清酒吧", es: "Bar de vino/sake" },
+          note: {
+            en: "Low volume, high taste.",
+            ja: "静かな音量、味は高密度。",
+            zh: "音量低，品味高。",
+            es: "Bajo volumen, gran sabor.",
+          },
+          image: "/stops/date_2_winebar.jpg",
+        },
+      ],
+      why: {
+        en: "For couples who hate crowds.",
+        ja: "人混みが苦手なカップルに。",
+        zh: "适合讨厌拥挤的情侣。",
+        es: "Para parejas que odian las multitudes.",
+      },
+    },
+  ];
 
 const QUESTIONS = [
   {
@@ -224,6 +426,19 @@ function Modal({ open, onClose, children }) {
   );
 }
 
+function pickText(v, lang) {
+  if (!v) return "";
+  if (typeof v === "object") return v[lang] || v.en || Object.values(v)[0] || "";
+  return v; // 移行途中のstringも壊さない
+}
+
+/** ✅（任意）Area/Vibe など value → 表示ラベル変換（QUESTIONS を使う） */
+function labelFromQuestion(qid, value, lang, QUESTIONS) {
+  const q = QUESTIONS.find((x) => x.id === qid);
+  const opt = q?.options?.find((o) => o.v === value);
+  return opt?.l?.[lang] || opt?.l?.en || value || "";
+}
+
 export default function App() {
   const [lang, setLang] = useState(CONFIG.defaultLang);
   const t = STRINGS[lang] ?? STRINGS.en;
@@ -266,7 +481,7 @@ export default function App() {
       [FORM_FIELDS.budget]: answers.budget,
       [FORM_FIELDS.area]: answers.area,
       [FORM_FIELDS.must]: answers.must,
-      [FORM_FIELDS.recommendedPlan]: pickedPlan.title,
+      [FORM_FIELDS.recommendedPlan]: pickText(pickedPlan.title, lang),
       [FORM_FIELDS.paid]: "yes",
     });
   }, [answers, pickedPlan]);
@@ -493,30 +708,32 @@ export default function App() {
 
       {/* Plans */}
       <section className="section sectionAlt" id="plans">
-        <div className="container">
-          <h2 className="h2">{t.prefixSectionTitle}</h2>
-          <div className="muted" style={{ marginBottom: 16 }}>
-            {t.prefixNote}
-          </div>
+  <div className="container">
+    <h2 className="h2">{t.prefixSectionTitle}</h2>
+    <div className="muted" style={{ marginBottom: 16 }}>
+      {t.prefixNote}
+    </div>
 
-          <div className="planStrip">
-            {PLANS.map((p) => (
-              <div key={p.id} className="planTile" style={{ backgroundImage: `url(${p.image})` }}>
-                <div className="planTileOverlay">
-                  <div className="planTileTitle">{p.title}</div>
-                  <div className="planTileMeta">{p.why}</div>
-                  <div className="planTileChips">
-                    {p.stops.slice(0, 3).map((_, idx) => (
-                      <span key={idx} className="chip">
-                        {typeof t.stopLabel === "function" ? t.stopLabel(idx + 1) : `Stop ${idx + 1}`}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
+    <div className="planStrip">
+      {PLANS.map((p) => (
+        <div key={p.id} className="planTile" style={{ backgroundImage: `url(${p.image})` }}>
+          <div className="planTileOverlay">
+            {/* ✅ ここ */}
+            <div className="planTileTitle">{pickText(p.title, lang)}</div>
+            {/* ✅ ここ */}
+            <div className="planTileMeta">{pickText(p.why, lang)}</div>
 
+            <div className="planTileChips">
+              {p.stops.slice(0, 3).map((_, idx) => (
+                <span key={idx} className="chip">
+                  {typeof t.stopLabel === "function" ? t.stopLabel(idx + 1) : `Stop ${idx + 1}`}
+                </span>
+              ))}
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
           <div className="timelineCard">
             <div className="timelineTitle">{t.sampleFlowTitle}</div>
 
@@ -811,82 +1028,98 @@ export default function App() {
 
       {/* Result modal */}
       <Modal open={resultOpen} onClose={() => setResultOpen(false)}>
-        {!pickedPlan ? null : (
-          <>
-            <div style={{ fontWeight: 900, fontSize: 18 }}>{t.resultTitle}</div>
-            <div className="muted" style={{ marginTop: 6 }}>
-              {pickedPlan.title}
+  {!pickedPlan ? null : (
+    <>
+      <div style={{ fontWeight: 900, fontSize: 18 }}>{t.resultTitle}</div>
+
+      {/* ✅ ここ：プランタイトル */}
+      <div className="muted" style={{ marginTop: 6 }}>
+        {pickText(pickedPlan.title, lang)}
+      </div>
+
+      <div className="resultTimeline">
+        {pickedPlan.stops.map((s, i) => (
+          <div className="rtRow" key={i}>
+            <div className="rtRail">
+              <div className="rtDot" />
+              {i < pickedPlan.stops.length - 1 && <div className="rtLine" />}
             </div>
 
-            <div className="resultTimeline">
-              {pickedPlan.stops.map((s, i) => (
-                <div className="rtRow" key={i}>
-                  <div className="rtRail">
-                    <div className="rtDot" />
-                    {i < pickedPlan.stops.length - 1 && <div className="rtLine" />}
-                  </div>
+            <div className="rtCard">
+              <div className="rtTop">
+                {/* ✅ ここ：Stepラベル */}
+                <div className="rtStep">
+                  {typeof t.stepLabel === "function" ? t.stepLabel(i + 1) : `STEP ${i + 1}`}
+                </div>
 
-                  <div className="rtCard">
-                    <div className="rtTop">
-                      <div className="rtStep">{`Step ${i + 1}`}</div>
-                      <div className="rtTitle">{`Stop ${s.step ?? i + 1}: ${s.name}`}</div>
-                    </div>
+                {/* ✅ ここ：Stopラベル + 店名（stop名） */}
+                <div className="rtTitle">
+                  {(typeof t.stopLabelInline === "function"
+                    ? t.stopLabelInline(s.step ?? i + 1)
+                    : `Stop ${s.step ?? i + 1}`) + `: ${pickText(s.name, lang)}`}
+                </div>
+              </div>
 
-                    <div className="rtBody">
-                      {/* ✅ p.image バグ修正：pickedPlan.image を使用 */}
-                      <div className="rtImg" style={{ backgroundImage: `url(${s.image || pickedPlan.image})` }} />
-                      <div className="rtText">
-                        <div className="rtNote">{s.note}</div>
-                        <div className="rtMeta">
-                          {answers.area ? `Area: ${answers.area}` : ""} {answers.vibe ? `• Vibe: ${answers.vibe}` : ""}
-                        </div>
-                      </div>
-                    </div>
+              <div className="rtBody">
+                <div className="rtImg" style={{ backgroundImage: `url(${s.image || pickedPlan.image})` }} />
+
+                <div className="rtText">
+                  {/* ✅ ここ：note */}
+                  <div className="rtNote">{pickText(s.note, lang)}</div>
+
+                  {/* ✅（任意）Area/Vibe の value をラベルに変換して表示 */}
+                  <div className="rtMeta">
+                    {answers.area ? `${t.areaLabel}: ${labelFromQuestion("area", answers.area, lang, QUESTIONS)}` : ""}
+                    {answers.vibe ? ` • ${t.vibeLabel}: ${labelFromQuestion("vibe", answers.vibe, lang, QUESTIONS)}` : ""}
                   </div>
                 </div>
-              ))}
-            </div>
-
-            <div className="card" style={{ marginTop: 14 }}>
-              <div className="cardTitle">{t.resultWhyTitle}</div>
-              <div className="cardText">{pickedPlan.why}</div>
-            </div>
-
-            <div className="modalCtas">
-              <a className="btn btnPrimary btnBlock" href={omakaseFormUrl} target="_blank" rel="noreferrer">
-                {t.pricingOmakaseCta}
-              </a>
-              <div className="small" style={{ marginTop: 10 }}>
-                {t.paymentAfterSubmission}
               </div>
             </div>
+          </div>
+        ))}
+      </div>
 
-            <details style={{ marginTop: 14 }}>
-              <summary className="small" style={{ cursor: "pointer" }}>
-                {t.resultCopySummary}
-              </summary>
-              <textarea
-                className="textarea"
-                readOnly
-                value={[
-                  `Recommended Plan: ${pickedPlan.title}`,
-                  `with=${answers.with}`,
-                  `vibe=${answers.vibe}`,
-                  `budget=${answers.budget}`,
-                  `area=${answers.area}`,
-                  `must=${answers.must}`,
-                ].join("\n")}
-              />
-            </details>
+      <div className="card" style={{ marginTop: 14 }}>
+        <div className="cardTitle">{t.resultWhyTitle}</div>
+        {/* ✅ ここ：why */}
+        <div className="cardText">{pickText(pickedPlan.why, lang)}</div>
+      </div>
 
-            <div style={{ marginTop: 10 }}>
-              <a className="small" href={omakaseFormUrl} target="_blank" rel="noreferrer">
-                {t.resultOpenFormAgain}
-              </a>
-            </div>
-          </>
-        )}
-      </Modal>
+      <div className="modalCtas">
+        <a className="btn btnPrimary btnBlock" href={omakaseFormUrl} target="_blank" rel="noreferrer">
+          {t.pricingOmakaseCta}
+        </a>
+        <div className="small" style={{ marginTop: 10 }}>
+          {t.paymentAfterSubmission}
+        </div>
+      </div>
+
+      <details style={{ marginTop: 14 }}>
+        <summary className="small" style={{ cursor: "pointer" }}>
+          {t.resultCopySummary}
+        </summary>
+        <textarea
+          className="textarea"
+          readOnly
+          value={[
+            `Recommended Plan: ${pickText(pickedPlan.title, lang)}`,
+            `with=${answers.with}`,
+            `vibe=${answers.vibe}`,
+            `budget=${answers.budget}`,
+            `area=${answers.area}`,
+            `must=${answers.must}`,
+          ].join("\n")}
+        />
+      </details>
+
+      <div style={{ marginTop: 10 }}>
+        <a className="small" href={omakaseFormUrl} target="_blank" rel="noreferrer">
+          {t.resultOpenFormAgain}
+        </a>
+      </div>
+    </>
+  )}
+</Modal>;
     </>
   );
 }
