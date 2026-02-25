@@ -4,11 +4,6 @@ import { LANGS, STRINGS } from "./i18n";
 import { FORM_FIELDS, buildGoogleFormPrefillUrl } from "./formPrefill";
 
 // ===== Plans (店名出しすぎない運用) =====
-/* =========================
-   ✅ PLANS を全部 i18 化した完全版（コピペで置き換え）
-   - title / why / stops[].name / stops[].note を {en,ja,zh,es} 化
-   ========================= */
-
    const PLANS = [
     {
       id: "central-3",
@@ -638,6 +633,7 @@ export default function App() {
                   <div className="trustPill">{t.trust2}</div>
                   <div className="trustPill">{t.trust3}</div>
                   <div className="trustPill">{t.trust4}</div>
+                  <div className="trustPill">{t.trust5}</div>
                 </div>
               </div>
 
@@ -803,46 +799,9 @@ export default function App() {
             </div>
           </div>
 
-          {/* quiz is a hook */}
-          <div style={{ marginTop: 14, maxWidth: 720 }}>
-            <div className="card">
-              <div className="cardTitle">{t.howQuizCtaTitle}</div>
-              <div className="cardText">{t.howQuizCtaText}</div>
-              <div className="mt12">
-                <button className="btn btnPrimary btnBlock" onClick={() => scrollToId("quiz")}>
-                  {t.heroCtaPrimary}
-                </button>
-              </div>
-              <div className="small" style={{ marginTop: 10 }}>
-                {t.quizHookNote}
-              </div>
-            </div>
-          </div>
 
-          {/* Instagram */}
-          <div style={{ marginTop: 14, maxWidth: 620 }}>
-            <div className="card">
-              <div className="cardTitle">{t.howInstagramTitle}</div>
-              <div className="cardText">{t.howInstagramText}</div>
-              <div className="mt12">
-                <a className="btn btnPrimary btnBlock" href={CONFIG.instagramProfileUrl} target="_blank" rel="noreferrer">
-                  {t.openInstagram}
-                </a>
-              </div>
-            </div>
-          </div>
 
-          {/* 埋め込み（任意） */}
-          <div style={{ marginTop: 14, maxWidth: 720 }}>
-            <InstagramEmbed
-              postUrl={CONFIG.instagramEmbedPostUrl}
-              profileUrl={CONFIG.instagramProfileUrl}
-              title={t.howInstagramTitle}
-              subtitle={t.igLatest}
-              fallbackText={t.igFallback}
-              openText={t.openInstagram}
-            />
-          </div>
+
         </div>
       </section>
 
@@ -875,20 +834,21 @@ export default function App() {
               </div>
             </div>
 
-            <div className="storyCard storyCardWide">
+            <div className="storyCard">
               <div className="storyKicker">{t.storyKicker3}</div>
               <div className="storyTitle">{t.storyHead3}</div>
               <div className="storyText">{t.storyBody3}</div>
 
               <div className="storyCtaRow">
-                <button className="btn btnPrimary" onClick={() => scrollToId("quiz")}>
-                  {t.heroCtaPrimary}
-                </button>
-                <a className="btn btnBlock" href={CONFIG.instagramProfileUrl} target="_blank" rel="noreferrer">
-                  {t.storyCta2}
-                </a>
-              </div>
+  <button className="btn btnPrimary btnBlock" onClick={() => scrollToId("quiz")}>
+    {t.storyCta1}
+  </button>
+  <a className="btn btnBlock" href={CONFIG.instagramProfileUrl} target="_blank" rel="noreferrer">
+    {t.storyCta2}
+  </a>
+</div>
             </div>
+
           </div>
 
           {/* Founders */}
@@ -971,15 +931,7 @@ export default function App() {
           <h2 className="h2">{t.pricingTitle}</h2>
 
           <div className="grid3" style={{ marginTop: 12 }}>
-            <div className="card">
-              <div className="cardTitle">{t.pricingPrefixTitle}</div>
-              <div className="cardText">{t.pricingPrefixText}</div>
-              <div style={{ marginTop: 12 }}>
-                <button className="btn btnBlock" onClick={() => scrollToId("plans")}>
-                  {t.pricingPrefixCta}
-                </button>
-              </div>
-            </div>
+
 
             <div className="card">
               <div className="cardTitle">{t.pricingOmakaseTitle}</div>
@@ -1003,8 +955,51 @@ export default function App() {
                 </a>
               </div>
             </div>
+
+            <div className="card">
+            <div className="cardTitle">{t.howQuizCtaTitle}</div>
+              <div className="cardText">{t.howQuizCtaText}</div>
+              <div style={{ marginTop: 18 }}>
+              <button className="btn btnPrimary btnBlock" onClick={() => scrollToId("quiz")}>
+                  {t.heroCtaPrimary}
+                </button>
+              </div>
+              <div className="small" style={{ marginTop: 10 }}>
+                {t.quizHookNote}
+              </div>
+            </div>
           </div>
         </div>
+      </section>
+
+      <section className="section sectionAlt" id="instagram">
+        <div className="container">
+          <h2 className="h2">Instagram</h2>
+
+                {/* Instagram */}
+                <div style={{ marginTop: 14, maxWidth: 620 }}>
+            <div className="card">
+              <div className="cardTitle">{t.howInstagramTitle}</div>
+              <div className="cardText">{t.howInstagramText}</div>
+              <div className="mt12">
+                <a className="btn btnPrimary btnBlock" href={CONFIG.instagramProfileUrl} target="_blank" rel="noreferrer">
+                  {t.openInstagram}
+                </a>
+              </div>
+            </div>
+          </div>
+
+          {/* <div style={{ marginTop: 14, maxWidth: 720 }}>
+            <InstagramEmbed
+              postUrl={CONFIG.instagramEmbedPostUrl}
+              profileUrl={CONFIG.instagramProfileUrl}
+              title={t.howInstagramTitle}
+              subtitle={t.igLatest}
+              fallbackText={t.igFallback}
+              openText={t.openInstagram}
+            />
+          </div> */}
+          </div>
       </section>
 
       {/* Footer */}
@@ -1094,24 +1089,6 @@ export default function App() {
         </div>
       </div>
 
-      <details style={{ marginTop: 14 }}>
-        <summary className="small" style={{ cursor: "pointer" }}>
-          {t.resultCopySummary}
-        </summary>
-        <textarea
-          className="textarea"
-          readOnly
-          value={[
-            `Recommended Plan: ${pickText(pickedPlan.title, lang)}`,
-            `with=${answers.with}`,
-            `vibe=${answers.vibe}`,
-            `budget=${answers.budget}`,
-            `area=${answers.area}`,
-            `must=${answers.must}`,
-          ].join("\n")}
-        />
-      </details>
-
       <div style={{ marginTop: 10 }}>
         <a className="small" href={omakaseFormUrl} target="_blank" rel="noreferrer">
           {t.resultOpenFormAgain}
@@ -1119,7 +1096,7 @@ export default function App() {
       </div>
     </>
   )}
-</Modal>;
+</Modal>
     </>
   );
 }
