@@ -54,7 +54,7 @@ export const LANGS = [
         sampleStop2Sub: "Sake + seasonal small plates",
         sampleStop3Head: "Stop 3",
         sampleStop3Sub: "Quiet bar to finish",
-        requestOmakasePaid: "Request Omakase (paid)",
+        requestOmakasePaid: "Request Omakase ($30)",
         paymentAfterSubmission:
           "Please submit your preferences first. After payment is confirmed, we will deliver your Omakase plan.",
       
