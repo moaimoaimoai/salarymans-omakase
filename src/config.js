@@ -5,7 +5,7 @@ export const CONFIG = {
       "Tokyo izakaya nights curated by real locals — with optional reservation help.",
   
     // ローカル画像前提：public/hero.jpg を置いてください
-    heroImage: "/hero.jpg",
+    heroImage: "/hero_1.jpg",
   
     // 画像の切り取り中心（例: "center", "top", "50% 35%" など）
     heroObjectPositionDesktop: "50% 45%",

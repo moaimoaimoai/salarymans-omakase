@@ -454,10 +454,98 @@ export default function App() {
     );
   }, []);
 
+
+
   // ===== quiz state =====
   const [step, setStep] = useState(0);
   const [answers, setAnswers] = useState({});
   const [resultOpen, setResultOpen] = useState(false);
+
+  // ===== responsive =====
+  const [isMobile, setIsMobile] = useState(false);
+  useEffect(() => {
+    const mq = window.matchMedia("(max-width: 980px)");
+    const apply = () => setIsMobile(mq.matches);
+    apply();
+
+    // Safari 対応も含める
+    if (mq.addEventListener) mq.addEventListener("change", apply);
+    else mq.addListener(apply);
+
+    return () => {
+      if (mq.removeEventListener) mq.removeEventListener("change", apply);
+      else mq.removeListener(apply);
+    };
+  }, []);
+
+  // ===== preview open/close (mobile default closed) =====
+  const [previewOpen, setPreviewOpen] = useState(false);
+  const [previewHiddenDesktop, setPreviewHiddenDesktop] = useState(false);
+
+  // PCは常に開く / スマホは閉じる
+  useEffect(() => {
+    if (isMobile) {
+        setPreviewOpen(false); // スマホは閉から
+      } else {
+        setPreviewOpen(true);  // PCは開から
+        setPreviewHiddenDesktop(false); // ✅ PCに戻ったら一旦表示に戻す（好みで消してOK）
+      }
+      }, [isMobile]);
+
+  // ✅ 1問目を選んで(stepが1以上になって)から Preview を出す
+  //    1問目まで戻ったら(step=0) Preview 自体を消す
+  const showPreview = step > 0 && !( !isMobile && previewHiddenDesktop );
+
+  // step=0 に戻ったら、スマホの開閉状態も閉じておく（次に出た時に邪魔しない）
+  useEffect(() => {
+    if (!showPreview) setPreviewOpen(false);
+    if (step === 0) setPreviewHiddenDesktop(false); // ✅ 次の開始時に復活
+  }, [showPreview, step]);
+
+// ===== preview (no hover) =====
+
+// ✅ hoverPick は不要なので削除
+// const [hoverPick, setHoverPick] = useState(null);
+
+const showPreviewLauncher = step > 0 && !isMobile && previewHiddenDesktop;
+
+const previewAnswers = useMemo(() => {
+  // ✅ 常に確定済みの回答だけでPreview
+  return answers;
+}, [answers]);
+
+const previewPlan = useMemo(() => {
+  return getBestPlan(previewAnswers);
+}, [previewAnswers]);
+
+// previewScore も要らなければ消してOK
+const previewScore = useMemo(() => {
+  try {
+    return scorePlan(previewPlan, previewAnswers);
+  } catch {
+    return 0;
+  }
+}, [previewPlan, previewAnswers]);
+
+  function handlePickOption(qid, value) {
+    setAnswers((a) => ({ ...a, [qid]: value }));
+
+    // ✅ 選択したら自動で次へ（最後だけ結果表示）
+    setStep((s) => {
+      const isLast = s >= QUESTIONS.length - 1;
+      if (isLast) {
+        // setAnswers は非同期なので、answers ではなく「qid/value を足した仮回答」で判定
+        const nextA = { ...answers, [qid]: value };
+        const ok = ["with", "vibe", "budget", "area", "must"].every((k) => Boolean(nextA[k]));
+        if (ok) {
+          setResultOpen(true);
+          scrollToId("quiz");
+        }
+        return s;
+      }
+      return Math.min(QUESTIONS.length - 1, s + 1);
+    });
+  }
 
   const completed = useMemo(() => {
     return ["with", "vibe", "budget", "area", "must"].every((k) => Boolean(answers[k]));
@@ -637,8 +725,95 @@ export default function App() {
                 </div>
               </div>
 
+        {/* ✅ Quiz preview (step>0 の時だけ表示 / mobileは折りたたみ) */}
+        {showPreview && (
+          <div
+            className={[
+              "quizPreview",
+              isMobile ? "isMobile" : "isDesktop",
+              previewOpen ? "open" : "closed",
+            ].join(" ")}
+          >
+            {/* スマホ用：Previewピル（閉→開） */}
+            <button
+              type="button"
+              className="quizPreviewToggle"
+              onClick={() => setPreviewOpen((v) => !v)}
+              aria-expanded={previewOpen}
+            >
+              Preview
+              <span className="quizPreviewDot" />
+            </button>
+
+
+
+                {/* カード本体（PCは常時表示 / スマホは open のときだけ表示されるCSS） */}
+                <div className="quizPreviewCard">
+
+                  {/* ✅ 追加：Previewヘッダー（カード内） */}
+                  <div className="quizPreviewHeader">
+                    <div className="quizPreviewHeaderLeft">
+                      <span className="quizPreviewHeaderDot" />
+                      <span className="quizPreviewHeaderTitle">
+                        {t.previewLabel || "Omakase preview"}
+                      </span>
+                    </div>
+                    <div className="quizPreviewHeaderRight">
+                      {t.previewSub || "Based on your current selections"}
+
+                      {/* ✅ PCだけ：✕で非表示 */}
+                      {!isMobile && (
+                        <button
+                          type="button"
+                          className="quizPreviewClose"
+                          onClick={() => setPreviewHiddenDesktop(true)}
+                          aria-label="Hide preview"
+                          title="Hide"
+                        >
+                          ✕
+                        </button>
+                      )}
+                    </div>
+                  </div>
+
+                  <div
+                    className="quizPreviewImg"
+                    style={{ backgroundImage: `url(${previewPlan?.image || "/prefix/p1.jpg"})` }}
+                  />
+
+                  <div className="quizPreviewText">
+                    <div className="quizPreviewTitle">{pickText(previewPlan?.title, lang)}</div>
+                    <div className="quizPreviewSub">{pickText(previewPlan?.why, lang)}</div>
+
+                    <div className="quizPreviewMeta">
+                      {previewAnswers.area ? `${t.areaLabel}: ${labelFromQuestion("area", previewAnswers.area, lang, QUESTIONS)}` : ""}
+                      {previewAnswers.vibe ? ` • ${t.vibeLabel}: ${labelFromQuestion("vibe", previewAnswers.vibe, lang, QUESTIONS)}` : ""}
+                      {previewAnswers.budget ? ` • ${labelFromQuestion("budget", previewAnswers.budget, lang, QUESTIONS)}` : ""}
+                      {previewAnswers.must ? ` • ${labelFromQuestion("must", previewAnswers.must, lang, QUESTIONS)}` : ""}
+                    </div>
+                  </div>
+
+                </div>
+          </div>
+        )}
+
+        {/* ✅ PCで隠した時の "Show preview" ミニボタン */}
+{showPreviewLauncher && (
+  <button
+    type="button"
+    className="quizPreviewLauncher"
+    onClick={() => setPreviewHiddenDesktop(false)}
+    aria-label="Show preview"
+    title="Show preview"
+  >
+    Show preview
+  </button>
+)}
+
               {/* Glass quiz panel */}
               <div className="glassPanel" id="quiz">
+
+
                 <div className="panelHead">
                   <div className="panelTitle">{t.quizTitle}</div>
                   <div className="panelSub">{t.quizSub}</div>
@@ -647,29 +822,29 @@ export default function App() {
                   </div>
                 </div>
 
-                <div className="panelBody">
-                  <div className="qTitle">
-                    {step + 1} / {QUESTIONS.length}
-                  </div>
-                  <div className="qTitle" style={{ marginTop: -6 }}>
-                    {quizQuestionTitle}
-                  </div>
+                <div className="panelBody panelBodyAnim" key={quiz.id}>
+                    <div className="qTitle">
+                      {step + 1} / {QUESTIONS.length}
+                    </div>
+                    <div className="qTitle" style={{ marginTop: -6 }}>
+                      {quizQuestionTitle}
+                    </div>
 
-                  <div className="optGrid">
-                    {quiz.options.map((o) => {
-                      const selected = answers[quiz.id] === o.v;
-                      return (
-                        <button
-                          key={o.v}
-                          className={`opt ${selected ? "sel" : ""}`}
-                          onClick={() => setAnswers((a) => ({ ...a, [quiz.id]: o.v }))}
-                        >
-                          {o.l[lang] || o.l.en}
-                        </button>
-                      );
-                    })}
+                    <div className="optGrid">
+                      {quiz.options.map((o) => {
+                        const selected = answers[quiz.id] === o.v;
+                        return (
+                          <button
+                            key={o.v}
+                            className={`opt ${selected ? "sel" : ""}`}
+                            onClick={() => handlePickOption(quiz.id, o.v)}
+                          >
+                            {o.l[lang] || o.l.en}
+                          </button>
+                        );
+                      })}
+                    </div>
                   </div>
-                </div>
 
                 <div className="panelActions">
                   <button className="btn" onClick={() => setStep((s) => Math.max(0, s - 1))} disabled={step === 0}>
