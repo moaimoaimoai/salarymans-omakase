@@ -877,6 +877,32 @@ const previewScore = useMemo(() => {
         </div>
       </section>
 
+            {/* How */}
+            <section className="section" id="how">
+        <div className="container">
+          <h2 className="h2">{t.howTitle}</h2>
+          <div className="muted" style={{ marginTop: 8, maxWidth: 820 }}>
+            {t.howLead}
+          </div>
+
+          {/* “希望 → Omakase → 予約” */}
+          <div className="grid3" style={{ marginTop: 12 }}>
+            <div className="card">
+              <div className="cardTitle">{t.howStep1Title}</div>
+              <div className="cardText">{t.howStep1Text}</div>
+            </div>
+            <div className="card">
+              <div className="cardTitle">{t.howStep2Title}</div>
+              <div className="cardText">{t.howStep2Text}</div>
+            </div>
+            <div className="card">
+              <div className="cardTitle">{t.howStep3Title}</div>
+              <div className="cardText">{t.howStep3Text}</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Plans */}
       <section className="section sectionAlt" id="plans">
   <div className="container">
@@ -950,35 +976,7 @@ const previewScore = useMemo(() => {
         </div>
       </section>
 
-      {/* How */}
-      <section className="section" id="how">
-        <div className="container">
-          <h2 className="h2">{t.howTitle}</h2>
-          <div className="muted" style={{ marginTop: 8, maxWidth: 820 }}>
-            {t.howLead}
-          </div>
 
-          {/* “希望 → Omakase → 予約” */}
-          <div className="grid3" style={{ marginTop: 12 }}>
-            <div className="card">
-              <div className="cardTitle">{t.howStep1Title}</div>
-              <div className="cardText">{t.howStep1Text}</div>
-            </div>
-            <div className="card">
-              <div className="cardTitle">{t.howStep2Title}</div>
-              <div className="cardText">{t.howStep2Text}</div>
-            </div>
-            <div className="card">
-              <div className="cardTitle">{t.howStep3Title}</div>
-              <div className="cardText">{t.howStep3Text}</div>
-            </div>
-          </div>
-
-
-
-
-        </div>
-      </section>
 
       {/* Story */}
       <section className="section" id="story">
