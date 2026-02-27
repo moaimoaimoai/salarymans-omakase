@@ -693,9 +693,18 @@ const previewScore = useMemo(() => {
       </div>
 
       <section className="hero">
-        <div className="heroMedia">
-          <img src={CONFIG.heroImage} alt="Hero" />
-        </div>
+      <div className="heroMedia">
+        <video
+          className="heroVideo"
+          src={CONFIG.heroVideo}     // ✅ config に追加する（後述）
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="metadata"
+          poster={CONFIG.heroPoster} // ✅ 任意：読み込み前の静止画
+        />
+      </div>
         <div className="heroOverlay" />
         <div className="heroNoise" />
 

@@ -6,6 +6,8 @@ export const CONFIG = {
   
     // ローカル画像前提：public/hero.jpg を置いてください
     heroImage: "/hero_1.jpg",
+    heroVideo: "/hero.mp4",
+    heroPoster: "/hero_1.jpg",
   
     // 画像の切り取り中心（例: "center", "top", "50% 35%" など）
     heroObjectPositionDesktop: "50% 45%",
