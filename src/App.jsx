@@ -1,7 +1,6 @@
 import React, { useEffect, useMemo, useState } from "react";
 import { CONFIG } from "./config";
 import { LANGS, STRINGS } from "./i18n";
-import { FORM_FIELDS, buildGoogleFormPrefillUrl } from "./formPrefill";
 
 // ===== Plans (店名出しすぎない運用) =====
    const PLANS = [
