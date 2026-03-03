@@ -555,19 +555,7 @@ const previewScore = useMemo(() => {
     return getBestPlan(answers);
   }, [answers, completed]);
 
-  const omakaseFormUrl = useMemo(() => {
-    if (!pickedPlan) return CONFIG.googleFormOmakaseBaseUrl;
-    return buildGoogleFormPrefillUrl(CONFIG.googleFormOmakaseBaseUrl, {
-      [FORM_FIELDS.with]: answers.with,
-      [FORM_FIELDS.vibe]: answers.vibe,
-      [FORM_FIELDS.budget]: answers.budget,
-      [FORM_FIELDS.area]: answers.area,
-      [FORM_FIELDS.must]: answers.must,
-      [FORM_FIELDS.recommendedPlan]: pickText(pickedPlan.title, lang),
-      [FORM_FIELDS.paid]: "yes",
-    });
-  }, [answers, pickedPlan]);
-
+  const omakaseFormUrl = CONFIG.googleFormOmakaseBaseUrl;
   const quiz = QUESTIONS[step];
 
   // quiz question title (move out from inline hardcode)
